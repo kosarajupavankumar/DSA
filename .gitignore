@@ -1,0 +1,5 @@
+# Ignore JavaScript files in all child folders
+**/*.js
+
+# Ignore TypeScript source map files in all child folders
+**/*.map
