@@ -105,8 +105,8 @@ function EquilibriumIndex(arr: number[]): number {
   let prefixSum: number[] = new Array(arr.length).fill(0);
 
   prefixSum[0] = arr[0];
-  for (let i = 0; i < arr.length; i++) {
-    prefixSum[i] = prefixSum[i - 1] + prefixSum[i];
+  for (let i = 1; i < arr.length; i++) {
+    prefixSum[i] = prefixSum[i - 1] + arr[i];
   }
 
   let rightSum: number = prefixSum[prefixSum.length - 1];
