@@ -1,6 +1,6 @@
 // topic --> Trees --> Structural & Traversal
 
-class TreeNode {
+export class TreeNode {
   val: number;
   left: TreeNode;
   right: TreeNode;
