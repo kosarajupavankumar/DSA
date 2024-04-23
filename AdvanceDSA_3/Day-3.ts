@@ -72,6 +72,42 @@ function constructBST(arr: number[], start: number, end: number): TreeNode {
   return node;
 }
 
+// Question-4 : Given a Binary Search Tree(BST) A. If there is a node with value B present in the tree delete it and return the tree.
+
+function deleteNodeInBST(root: TreeNode, target: number): TreeNode | null {
+  if (!root) {
+    return null;
+  }
+
+  // check the left tree
+  if (target < root.val) {
+    root.left = deleteNodeInBST(root.left, target);
+  } else if (target > root.val) {
+    root.right = deleteNodeInBST(root.right, target);
+  } else {
+    if (!root.left) {
+      return root.right;
+    } else if (!root.right) {
+      return root.left;
+    } else {
+      // Find the maximum value in the left subtree to replace the current node's value
+      root.val = findMax(root.left);
+      root.left = deleteNodeInBST(root.left, root.val);
+    }
+  }
+  return root;
+}
+
+function findMax(node: TreeNode) {
+  let maxVal: number = node.val;
+
+  while (node.right != null) {
+    maxVal = node.right.val;
+    node = node.right;
+  }
+
+  return maxVal;
+}
 // calling functions
 // Question -1 :
 const root = new TreeNode(2);
@@ -84,3 +120,6 @@ console.log(searchInBST(root, 3));
 
 // Question -3 :
 console.log(SortedArrayToBalancedBST([1, 2, 3, 4, 5, 6, 7]));
+
+// Question-4
+console.log(deleteNodeInBST(root, 3));
