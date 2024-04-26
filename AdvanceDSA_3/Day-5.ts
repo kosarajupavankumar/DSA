@@ -135,6 +135,23 @@ function checkDiameter(root: TreeNode | null): number {
   return diameter[0];
 }
 
+// Question -5 : Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
+
+function hasPathSUm(root: TreeNode, sum: number): number {
+  if (root == null) {
+    return 0;
+  }
+
+  if (root.left == null && root.right == null && root.val == sum) {
+    return 1;
+  }
+
+  let leftResult: number = hasPathSUm(root.left, sum - root.val);
+  let rightResult: number = hasPathSUm(root.right, sum - root.val);
+
+  return leftResult | rightResult;
+}
+
 // calling functions
 const root = new TreeNode(1);
 root.left = new TreeNode(2);
@@ -162,3 +179,6 @@ NextPointerBinaryTree(root1);
 
 // Question-4 :
 checkDiameter(root1);
+
+// Question-5 :
+hasPathSUm(root, 3);
