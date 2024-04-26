@@ -97,6 +97,44 @@ function NextPointerBinaryTree(root: TreeLinkNode) {
   }
 }
 
+// Question -4 : Given a Binary Tree A consisting of N integer nodes, you need to find the diameter of the tree.The diameter of a tree is the number of edges on the longest path between two nodes in the tree.
+
+class TreeNode {
+  val: number;
+  left: TreeNode | null;
+  right: TreeNode | null;
+  constructor(x: number) {
+    this.val = x;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+function calculateDiameter(node: TreeNode | null, diameter: number[]): number {
+  if (node === null) {
+    return 0; // Base case: height of null node is 0
+  }
+
+  // Recursively calculate the height of left and right subtrees
+  const leftHeight: number = calculateDiameter(node.left, diameter);
+  const rightHeight: number = calculateDiameter(node.right, diameter);
+
+  // Update diameter if the sum of heights of left and right subtrees is greater
+  diameter[0] = Math.max(diameter[0], leftHeight + rightHeight);
+
+  // Return the height of the current subtree
+  return Math.max(leftHeight, rightHeight) + 1;
+}
+
+function checkDiameter(root: TreeNode | null): number {
+  const diameter: number[] = [0]; // variable to store the diameter
+
+  // Call the recursive function to find the height of the tree
+  calculateDiameter(root, diameter);
+
+  return diameter[0];
+}
+
 // calling functions
 const root = new TreeNode(1);
 root.left = new TreeNode(2);
@@ -121,3 +159,6 @@ root1.left.right = new TreeLinkNode(5);
 root1.right.left = new TreeLinkNode(6);
 root1.right.right = new TreeLinkNode(7);
 NextPointerBinaryTree(root1);
+
+// Question-4 :
+checkDiameter(root1);
