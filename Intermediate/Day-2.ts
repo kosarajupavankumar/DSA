@@ -80,7 +80,7 @@ function sumOfMaxAndMin(arr : number[]) : number{
 // Space Complexity --> O()
 function secondLargestElement(arr:number[]) : number {
   let maxElement : number = Number.MIN_VALUE;
-  let secondMaxElement : number = Number.MAX_VALUE;
+  let secondMaxElement : number = Number.MIN_VALUE;
   // base case
   if(arr.length <= 1){
     return -1;
